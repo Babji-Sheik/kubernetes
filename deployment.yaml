@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-k8s-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-k8s
+  template:
+    metadata:
+      labels:
+        app: node-k8s
+    spec:
+      containers:
+      - name: node-k8s-container
+        image: node-k8s-demo:1.0
+        imagePullPolicy: Never  # use local image built by Docker
+        ports:
+        - containerPort: 3000
